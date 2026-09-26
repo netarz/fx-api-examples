@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>نرخ ارز امروز</title>
+  <style>
+    body { font-family: Vazirmatn, Tahoma, sans-serif; max-width: 480px; margin: 2rem auto; padding: 0 1rem; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: .5rem; border-bottom: 1px solid #ddd; text-align: start; }
+    small { color: #666; }
+  </style>
+</head>
+<body>
+  <h1>نرخ ارز امروز</h1>
+  <table>
+    <thead><tr><th>ارز</th><th>خرید</th><th>فروش</th></tr></thead>
+    <tbody id="rates"><tr><td colspan="3">در حال دریافت…</td></tr></tbody>
+  </table>
+  <p><small id="asof"></small></p>
+  <p><small>نرخ از <a href="https://netarz.ir/rates">نِت اَرز</a></small></p>
+
+  <script type="module">
+    import { netarzFx, toman } from "./netarz-fx.js";
+
+    // Local testing: register "localhost" as the app domain (verified automatically)
+    // and serve this folder, e.g. `npx serve` or `python3 -m http.server`.
+    const fx = netarzFx("fx-ntz-v1-your-key-here");
+    const tbody = document.getElementById("rates");
+
+    try {
+      const { data, meta } = await fx.rates(["USD", "EUR", "AED", "TRY", "GBP"]);
+      tbody.innerHTML = "";
+      for (const r of data) {
+        const tr = document.createElement("tr");
+        const unit = r.unit > 1 ? ` (${r.unit})` : "";
+        for (const text of [r.name + unit, toman(r.buy), toman(r.sell)]) {
+          const td = document.createElement("td");
+          td.textContent = text;
+          tr.append(td);
+        }
+        tbody.append(tr);
+      }
+      const when = new Date(meta.as_of).toLocaleTimeString("fa-IR", { hour: "2-digit", minute: "2-digit" });
+      document.getElementById("asof").textContent =
+        `به‌روز شده در ساعت ${when}` + (meta.is_delayed ? ` (با ${meta.delayed_minutes} دقیقه تأخیر)` : "");
+    } catch (e) {
+      // origin_not_allowed: this page's domain is not on the app; domain_not_verified: verify it in the panel.
+      const tr = document.createElement("tr");
+      tr.append(Object.assign(document.createElement("td"), { colSpan: 3, textContent: `دریافت نرخ ممکن نشد (${e.code ?? e.message})` }));
+      tbody.replaceChildren(tr);
+    }
+  </script>
+</body>
+</html>

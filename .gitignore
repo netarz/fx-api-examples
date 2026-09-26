@@ -1,0 +1,19 @@
+# secrets
+.env
+.env.*
+!.env.example
+
+# dependencies
+node_modules/
+package-lock.json
+vendor/
+composer.lock
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# editors / OS
+.idea/
+.vscode/
+.DS_Store
