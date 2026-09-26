@@ -1,0 +1,58 @@
+name: گزارش اشکال (Bug report)
+description: کدی در این مخزن کار نمی‌کند یا نتیجهٔ نادرست می‌دهد.
+title: "[Bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ممنون که گزارش می‌دهید. مشکل حساب، اعتبار یا پرداخت را این‌جا ننویسید؛ از پنل نِت اَرز تیکت بزنید.
+        مشکل امنیتی را هم فقط به dev@netarz.ir بفرستید.
+  - type: input
+    id: where
+    attributes:
+      label: کدام نمونه؟ (Which example?)
+      placeholder: php/rates.php
+    validations:
+      required: true
+  - type: textarea
+    id: what_happened
+    attributes:
+      label: چه اتفاقی افتاد؟ (What happened?)
+      description: متن کامل خطا یا پاسخ API را بگذارید. کلید را از آن پاک کنید.
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: انتظار چه چیزی را داشتید؟ (What did you expect?)
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: مراحل بازتولید (Steps to reproduce)
+      placeholder: |
+        1. ...
+        2. ...
+  - type: input
+    id: environment
+    attributes:
+      label: محیط اجرا (Environment)
+      description: زبان و نسخه، نوع هاست (اشتراکی، VPS، Vercel، Google Sheets…)، و این‌که درخواست از مرورگر است یا از سرور.
+      placeholder: PHP 8.2 on shared hosting, server-side call
+    validations:
+      required: true
+  - type: input
+    id: seen_ip
+    attributes:
+      label: IPی که در خطا آمده (اگر خطای ip_not_allowed است)
+      description: پاسخ خطا فیلد `ip` دارد؛ همان را این‌جا بنویسید.
+  - type: checkboxes
+    id: no_secrets
+    attributes:
+      label: پیش از ارسال
+      options:
+        - label: کلید واقعی، توکن و اطلاعات شخصی را از متن حذف کرده‌ام. (I removed real keys and personal data.)
+          required: true

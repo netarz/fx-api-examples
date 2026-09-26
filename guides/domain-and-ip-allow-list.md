@@ -3,7 +3,7 @@
 بیشتر پیام‌هایی که با «اتصال برقرار نمی‌شود» یا «۴۰۳ می‌گیرم» به ما می‌رسد، از یک جا می‌آید:
 کلید API نرخ ارز به دامنه و IP شما قفل است و درخواست از جایی رسیده که روی اپ ثبت نشده.
 این راهنما می‌گوید قفل دقیقاً چطور کار می‌کند و برای هر نوع میزبان چه کنید.
-مرجع کامل: [netarz.ir/docs/fx/domain-lock](https://netarz.ir/docs/fx/domain-lock)
+مرجع کامل: [netarz.ir/docs/fx/domain-lock](https://netarz.ir/docs/fx/domain-lock?utm_source=github&utm_medium=referral&utm_campaign=fx-api-examples&utm_content=guides-domain-and-ip-allow-list)
 
 ## قاعده در یک نگاه
 
@@ -21,7 +21,7 @@
 
 | کد | معنی | کار شما |
 |---|---|---|
-| `domain_not_verified` | تأیید مالکیت انجام نشده | فایل آماده را از صفحهٔ اپ در پنل [/fx](https://netarz.ir/fx) دانلود و بدون ویرایش آپلود کنید، بعد «بررسی و تأیید» |
+| `domain_not_verified` | تأیید مالکیت انجام نشده | فایل آماده را از صفحهٔ اپ در پنل [/fx](https://netarz.ir/fx?utm_source=github&utm_medium=referral&utm_campaign=fx-api-examples&utm_content=guides-domain-and-ip-allow-list) دانلود و بدون ویرایش آپلود کنید، بعد «بررسی و تأیید» |
 | `origin_not_allowed` | صفحه روی دامنه‌ای است که روی اپ نیست | همان دامنه را به «دامنه‌های اضافی» اضافه کنید (پاسخ خطا فیلد `origin` و `allowed` دارد) |
 | `origin_required` | درخواست از سرور آمده و اپ هیچ IP مجازی ندارد | IP خروجی سرور را اضافه کنید |
 | `ip_not_allowed` | IP فرستنده در فهرست نیست | **همان IPی را اضافه کنید که در فیلد `ip` پاسخ خطا آمده** |
@@ -65,7 +65,7 @@ IP خروجی این سرویس‌ها ثابت نیست و با مشتری‌ه
   IP همان سرور را یک بار ثبت کنید و بقیه (Sheets، Excel، Worker) از رله بخوانند. رله کش دارد و CSV هم می‌دهد.
 - **فراخوانی از مرورگر:** اگر نرخ را فقط در صفحه نشان می‌دهید، سرور لازم نیست. کد جاوااسکریپت صفحه مستقیم با
   کلید درخواست می‌دهد و قفل دامنه از آن محافظت می‌کند ([`javascript/browser/`](../javascript/browser/)). یا
-  [ویجت نرخ ارز](https://netarz.ir/docs/fx/widget) را با یک تگ `script` بگذارید.
+  [ویجت نرخ ارز](https://netarz.ir/docs/fx/widget?utm_source=github&utm_medium=referral&utm_campaign=fx-api-examples&utm_content=guides-domain-and-ip-allow-list) را با یک تگ `script` بگذارید.
 
 **Excel یا اسکریپت روی لپ‌تاپ.** IP خانه و اینترنت همراه معمولاً عوض می‌شود. از رله بخوانید
 ([`excel-power-query/`](../excel-power-query/)).
