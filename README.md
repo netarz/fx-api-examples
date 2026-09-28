@@ -4,13 +4,18 @@
 
 **نرخ دلار، یورو، درهم، لیر و ارزهای دیگر به تومان، برای سایت، اپ، ربات و صفحه‌گسترده.**
 
-Iranian Toman exchange rate API examples: USD, EUR, AED, TRY and more in PHP, JavaScript, Python, Laravel, WordPress, Google Sheets and Excel.
+Iranian Toman exchange rate API examples: USD, EUR, AED, TRY and more in PHP, JavaScript, React, Python, Go, C#/.NET, Laravel, WordPress, a Telegram bot, Google Sheets and Excel.
 
+[![CI](https://github.com/netarz/fx-api-examples/actions/workflows/ci.yml/badge.svg)](https://github.com/netarz/fx-api-examples/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-ffc700?style=flat-square&labelColor=14161f)](LICENSE)
 [![Free plan](https://img.shields.io/badge/free%20plan-membership%20only-ffc700?style=flat-square&labelColor=14161f)](https://netarz.ir/docs/fx/plans?utm_source=github&utm_medium=referral&utm_campaign=fx-api-examples&utm_content=header)
 [![PHP](https://img.shields.io/badge/PHP-ffc700?style=flat-square&labelColor=14161f&logo=php&logoColor=white)](php/)
 [![JavaScript](https://img.shields.io/badge/JavaScript-ffc700?style=flat-square&labelColor=14161f&logo=javascript&logoColor=white)](javascript/)
 [![Python](https://img.shields.io/badge/Python-3.8%2B-ffc700?style=flat-square&labelColor=14161f&logo=python&logoColor=white)](python/)
+[![Go](https://img.shields.io/badge/Go-ffc700?style=flat-square&labelColor=14161f&logo=go&logoColor=white)](go/)
+[![.NET](https://img.shields.io/badge/.NET%208-ffc700?style=flat-square&labelColor=14161f&logo=dotnet&logoColor=white)](dotnet/)
+[![React](https://img.shields.io/badge/React-ffc700?style=flat-square&labelColor=14161f&logo=react&logoColor=white)](react/)
+[![Telegram bot](https://img.shields.io/badge/Telegram%20bot-ffc700?style=flat-square&labelColor=14161f&logo=telegram&logoColor=white)](telegram-bot/)
 [![Google Sheets](https://img.shields.io/badge/Google%20Sheets-ffc700?style=flat-square&labelColor=14161f&logo=googlesheets&logoColor=white)](google-sheets/)
 [![Docs](https://img.shields.io/badge/docs-netarz.ir%2Fdocs%2Ffx-ffc700?style=flat-square&labelColor=14161f)](https://netarz.ir/docs/fx?utm_source=github&utm_medium=referral&utm_campaign=fx-api-examples&utm_content=header)
 
@@ -33,10 +38,14 @@ Iranian Toman exchange rate API examples: USD, EUR, AED, TRY and more in PHP, Ja
 - [شروع در دو دقیقه](#quickstart)
 - [راه‌اندازی در سه قدم](#setup)
 - [فهرست نمونه‌ها](#examples)
+- [React: از سرور خودتان یا از مرورگر](#react)
+- [ربات تلگرام](#telegram)
+- [مبدل تومان با یک درخواست](#converter)
 - [داده‌ای که می‌گیرید](#data)
 - [رایگان و پرو](#plans)
 - [مصرف را پایین نگه دارید](#usage)
 - [خطاهای رایج](#errors)
+- [بررسی خودکار کد و تغییرات](#ci)
 - [مخزن‌های دیگر نِت اَرز](#related)
 - [مشارکت و پشتیبانی](#support)
 - [English](#english)
@@ -65,6 +74,9 @@ cd fx-api-examples
 php php/rates.php                    # PHP خالص، با کش فایل
 node javascript/node/rates.mjs       # Node.js 18+، بدون وابستگی
 python3 python/netarz_fx.py          # Python (pip install requests)
+(cd go && go run .)                  # Go، فقط کتابخانهٔ استاندارد
+dotnet run --project dotnet          # C# و .NET 8
+node converter/toman-converter.mjs 250 USD   # مبدل تومان
 ```
 
 فقط می‌خواهید نرخ را در سایتتان نشان بدهید و کد نمی‌نویسید؟ [ویجت نرخ ارز](https://netarz.ir/docs/fx/widget?utm_source=github&utm_medium=referral&utm_campaign=fx-api-examples&utm_content=quickstart) با یک تگ
@@ -102,6 +114,63 @@ python3 python/netarz_fx.py          # Python (pip install requests)
 | [`google-sheets/Code.gs`](google-sheets/Code.gs) | تابع `=NETARZ_RATE("USD")` در Google Sheets | [نرخ دلار در اکسل و گوگل شیت](https://netarz.ir/wiki/dollar-rate-excel-google-sheets?utm_source=github&utm_medium=referral&utm_campaign=fx-api-examples&utm_content=examples) |
 | [`excel-power-query/netarz-rates.pq`](excel-power-query/netarz-rates.pq) | نرخ در Excel و Power BI با Power Query | [نرخ دلار در اکسل و گوگل شیت](https://netarz.ir/wiki/dollar-rate-excel-google-sheets?utm_source=github&utm_medium=referral&utm_campaign=fx-api-examples&utm_content=examples) |
 | [`relay/fx-relay.php`](relay/fx-relay.php) | رله روی یک سرور با IP ثابت، برای جاهایی که IP ثابت ندارند؛ JSON یا CSV | [راهنمای قفل IP](guides/domain-and-ip-allow-list.md) |
+| [`go/`](go/) | Go با `net/http` و بدون وابستگی، با کش و پیام خطای روشن | [نرخ‌ها](https://netarz.ir/docs/fx/rates?utm_source=github&utm_medium=referral&utm_campaign=fx-api-examples&utm_content=examples) |
+| [`dotnet/`](dotnet/) | C# و .NET 8 با `HttpClient`، بدون بستهٔ NuGet | [نرخ‌ها](https://netarz.ir/docs/fx/rates?utm_source=github&utm_medium=referral&utm_campaign=fx-api-examples&utm_content=examples) |
+| [`react/`](react/) | هوک `useNetArzRates` و جدول نرخ برای React؛ از سرور خودتان یا مستقیم از مرورگر | [قفل دامنه](https://netarz.ir/docs/fx/domain-lock?utm_source=github&utm_medium=referral&utm_campaign=fx-api-examples&utm_content=examples) |
+| [`telegram-bot/`](telegram-bot/) | ربات تلگرام با دستورهای `/usd`، `/rates` و `/convert` | [نرخ‌ها](https://netarz.ir/docs/fx/rates?utm_source=github&utm_medium=referral&utm_campaign=fx-api-examples&utm_content=examples) |
+| [`converter/toman-converter.mjs`](converter/toman-converter.mjs) | تبدیل تومان به دلار، یورو و درهم و برعکس، با یک درخواست | [مبدل](https://netarz.ir/docs/fx/convert?utm_source=github&utm_medium=referral&utm_campaign=fx-api-examples&utm_content=examples) |
+
+<a id="react"></a>
+
+## React: از سرور خودتان یا از مرورگر
+
+هوک [`useNetArzRates`](react/useNetArzRates.js) نرخ‌ها را از یکی از این دو راه می‌گیرد:
+
+- **از سرور خودتان (پیشنهاد ما، اگر سرور دارید):** `endpoint` را نشانی‌ای روی سایت خودتان بدهید که سمت سرور
+  `/rates` را با کلید می‌خواند و همان JSON را برمی‌گرداند (نمونه‌های [`laravel/`](laravel/) و [`php/`](php/)).
+  کلید به مرورگر نمی‌رسد و یک کش سمت سرور برای همهٔ بازدیدکننده‌ها کافی است.
+- **مستقیم از مرورگر:** `apiKey` را بدهید. کلید در کد صفحه دیده می‌شود، ولی چون به دامنهٔ شما قفل است از سایت دیگری
+  کار نمی‌کند ([قفل دامنه](https://netarz.ir/docs/fx/domain-lock?utm_source=github&utm_medium=referral&utm_campaign=fx-api-examples&utm_content=react)). دامنهٔ صفحه باید روی اپ باشد.
+
+```jsx
+import RatesTable from "./RatesTable.jsx";
+
+<RatesTable codes={["USD", "EUR", "AED"]} endpoint="/api/fx-rates" />
+```
+
+هوک نرخ‌ها را در حافظه و `sessionStorage` نگه می‌دارد و زودتر از یک دقیقه دوباره درخواست نمی‌فرستد. اگر درخواستی
+خطا بدهد، آخرین نرخ سالم روی صفحه می‌ماند.
+
+<a id="telegram"></a>
+
+## ربات تلگرام
+
+[`telegram-bot/bot.py`](telegram-bot/bot.py) به `/usd`، `/eur`، `/rates` و `/convert 100 usd` جواب می‌دهد. فقط کتابخانهٔ
+`requests` لازم دارد و با long polling کار می‌کند، پس دامنه و وبهوک نمی‌خواهد:
+
+```bash
+pip install -r telegram-bot/requirements.txt
+export TELEGRAM_BOT_TOKEN="..."   # از @BotFather
+export NETARZ_FX_KEY="fx-ntz-v1-..."
+python3 telegram-bot/bot.py
+```
+
+ربات همهٔ نرخ‌ها را با یک درخواست می‌گیرد و دو دقیقه نگه می‌دارد؛ یعنی حتی در یک گروه شلوغ هر دو دقیقه حداکثر
+یک درخواست از سهمیهٔ شما کم می‌شود. IP سروری که ربات روی آن اجرا می‌شود باید در «IPهای مجاز» اپ باشد.
+
+<a id="converter"></a>
+
+## مبدل تومان با یک درخواست
+
+برای یک تبدیل، `GET /convert` ساده‌ترین راه است. ولی صفحه‌ای که ده‌ها قیمت را تبدیل می‌کند (فهرست قیمت، سبد خرید،
+ماشین‌حساب) بهتر است یک بار `/rates` را بگیرد و حساب را خودش انجام بدهد.
+[`converter/toman-converter.mjs`](converter/toman-converter.mjs) همین کار را می‌کند، با همان قاعدهٔ `mid`، `buy` و `sell`
+که `/convert` دارد، و قیمت را بر `unit` تقسیم می‌کند:
+
+```bash
+node converter/toman-converter.mjs 250 USD            # ۲۵۰ دلار به تومان
+node converter/toman-converter.mjs 10000000 IRT EUR   # ۱۰ میلیون تومان به یورو
+```
 
 <a id="data"></a>
 
@@ -146,6 +215,14 @@ python3 python/netarz_fx.py          # Python (pip install requests)
 
 فهرست کامل: [netarz.ir/docs/fx/errors](https://netarz.ir/docs/fx/errors?utm_source=github&utm_medium=referral&utm_campaign=fx-api-examples&utm_content=errors)
 
+<a id="ci"></a>
+
+## بررسی خودکار کد و تغییرات
+
+با هر Push و Pull Request، [گردش‌کار CI](.github/workflows/ci.yml) نحو و ساخت همهٔ نمونه‌ها را بررسی می‌کند: Python،
+JavaScript و JSX، PHP، Go، .NET و اسکریپت‌های cURL. این بررسی هیچ درخواستی به API نمی‌فرستد و کلید نمی‌خواهد.
+فهرست تغییرات هر نسخه در [CHANGELOG.md](CHANGELOG.md) است.
+
 <a id="related"></a>
 
 ## مخزن‌های دیگر نِت اَرز
@@ -186,6 +263,23 @@ same as on the [NetArz rate board](https://netarz.ir/rates?utm_source=github&utm
 export NETARZ_FX_KEY="fx-ntz-v1-..."
 curl -4 "https://netarz.ir/api/fx/v1/rates?codes=USD,EUR,AED" -H "Authorization: Bearer $NETARZ_FX_KEY"
 ```
+
+### More examples (1.1.0)
+
+```bash
+(cd go && go run . USD EUR AED)                 # Go, standard library only
+dotnet run --project dotnet -- USD EUR AED      # C# / .NET 8, HttpClient
+node converter/toman-converter.mjs 250 USD      # Toman converter from one /rates call
+python3 telegram-bot/bot.py                     # Telegram bot: /usd, /rates, /convert 100 usd
+```
+
+- `react/`: `useNetArzRates` hook and `RatesTable` component. Point `endpoint` at your own backend (the key stays on
+  the server), or pass a domain-locked `apiKey` for direct browser calls, which the docs support because a browser
+  cannot forge `Origin`.
+- `converter/`: converts many amounts locally from one `/rates` response, with the same `mid`/`buy`/`sell` rule as
+  `GET /convert` and prices divided by `unit`.
+- CI ([`.github/workflows/ci.yml`](.github/workflows/ci.yml)) runs syntax and build checks only; it never calls the API.
+  Release notes: [CHANGELOG.md](CHANGELOG.md).
 
 ### Facts
 
