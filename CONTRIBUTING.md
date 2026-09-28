@@ -23,6 +23,8 @@
 6. کد، نام متغیرها و توضیح‌های داخل کد انگلیسی باشد. README فارسی است و یک بخش English کوتاه دارد.
 7. فایل تازه را در جدول «فهرست نمونه‌ها» در README اضافه کنید، با لینک صفحهٔ مستندات مربوط.
 8. کد را یک بار واقعاً اجرا کنید. بررسی سریع نحو: `python -m py_compile <file>.py` · `node --check <file>.mjs` · `php -l <file>.php` · `bash -n <file>.sh`
+   · `go vet ./...` · `dotnet build`. همین بررسی‌ها در [CI](.github/workflows/ci.yml) روی هر Pull Request اجرا می‌شود و به کلید نیاز ندارد.
+9. اگر تغییر شما برای کسی که از نمونه‌ها استفاده می‌کند مهم است، یک خط زیر `[Unreleased]` در [CHANGELOG.md](CHANGELOG.md) اضافه کنید.
 
 ## سبک نوشتن متن فارسی
 
@@ -40,6 +42,6 @@
 ## Contributing (English)
 
 Thanks for improving the NetArz FX API examples. Open an issue before a large change. Never commit a real key (`fx-ntz-v1-…`) or token;
-if you did, revoke it in the NetArz panel first. Read the key from `NETARZ_FX_KEY`, send it in a header (never `?key=`), cache 1 to 5 minutes, batch codes in one call. Run the code once for real before opening a pull request.
+if you did, revoke it in the NetArz panel first. Read the key from `NETARZ_FX_KEY`, send it in a header (never `?key=`), cache 1 to 5 minutes, batch codes in one call. Run the code once for real before opening a pull request. CI runs syntax and build checks for every language on each pull request (no key needed); add a line under `[Unreleased]` in CHANGELOG.md for user-facing changes.
 Account, credit and billing questions go to `info@netarz.ir`, security issues to `dev@netarz.ir` (see [SECURITY.md](SECURITY.md)).
 By contributing you agree your work is released under MIT.
