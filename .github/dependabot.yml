@@ -1,0 +1,30 @@
+# Monthly update checks for the ecosystems this repository actually uses.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    commit-message:
+      prefix: ci
+
+  - package-ecosystem: pip
+    directory: /telegram-bot
+    schedule:
+      interval: monthly
+    commit-message:
+      prefix: deps
+
+  - package-ecosystem: gomod
+    directory: /go
+    schedule:
+      interval: monthly
+    commit-message:
+      prefix: deps
+
+  - package-ecosystem: nuget
+    directory: /dotnet
+    schedule:
+      interval: monthly
+    commit-message:
+      prefix: deps
