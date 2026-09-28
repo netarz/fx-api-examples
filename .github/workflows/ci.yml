@@ -1,0 +1,94 @@
+# Syntax and build checks for every example.
+# This workflow never calls the NetArz API and needs no key or secret.
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  python:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: py_compile
+        run: python -m py_compile python/*.py telegram-bot/*.py
+
+  javascript:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: node --check
+        run: |
+          for f in javascript/browser/*.js javascript/node/*.mjs react/*.js converter/*.mjs; do
+            echo "node --check $f"
+            node --check "$f"
+          done
+          # Apps Script is plain JavaScript with a .gs extension.
+          cp google-sheets/Code.gs "$RUNNER_TEMP/Code.js"
+          node --check "$RUNNER_TEMP/Code.js"
+      - name: JSX parse (esbuild, no bundling of dependencies)
+        run: npx --yes esbuild@0.24.0 react/RatesTable.jsx --jsx=automatic --log-level=warning > /dev/null
+
+  php:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.3"
+          coverage: none
+      - name: php -l
+        run: find . -name '*.php' -not -path './.git/*' -print0 | xargs -0 -n1 php -l
+
+  go:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: go
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go/go.mod
+          cache: false
+      - name: gofmt
+        run: test -z "$(gofmt -l .)" || { gofmt -l .; exit 1; }
+      - name: go vet
+        run: go vet ./...
+      - name: go build
+        run: go build -o /dev/null ./...
+
+  dotnet:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.0.x"
+      - name: dotnet build
+        run: dotnet build dotnet/NetArzFx.csproj --nologo
+
+  shell:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: bash -n and shellcheck
+        run: |
+          for f in curl/*.sh; do bash -n "$f"; done
+          shellcheck curl/*.sh
