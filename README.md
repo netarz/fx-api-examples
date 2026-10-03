@@ -231,6 +231,7 @@ JavaScript و JSX، PHP، Go، .NET و اسکریپت‌های cURL. این بر
 |---|---|
 | [netarz-fx-wordpress](https://github.com/netarz/netarz-fx-wordpress) | افزونهٔ وردپرس همین API: شورت‌کد `[netarz_rate currency="usd"]`، ابزارک، کش و ترجمهٔ فارسی |
 | [ai-api-examples](https://github.com/netarz/ai-api-examples) | نمونه‌کد وب‌سرویس هوش مصنوعی: GPT، Claude، Gemini و DeepSeek با یک کلید سازگار با OpenAI |
+| [gisoo](https://github.com/netarz/gisoo) | **گیسو**، برند هوش مصنوعی نِت اَرز: اپ فارسی برای گفت‌وگو با بیش از ۴۰۰ مدل، ساخت تصویر، ویدیو، موسیقی و صدا، کارشناس‌های هوش مصنوعی و گفت‌وگوی صوتی، و وب‌سرویس سازگار با OpenAI و Anthropic (Claude Code) ([gisoo.pro](https://gisoo.pro/?utm_source=github&utm_medium=referral&utm_campaign=fx-api-examples&utm_content=related)) |
 | [netarz](https://github.com/netarz/netarz) | معرفی همهٔ وب‌سرویس‌ها و مخزن‌های نِت اَرز |
 
 همهٔ پروژه‌های متن‌باز ما یک‌جا: [netarz.ir/open-source](https://netarz.ir/open-source?utm_source=github&utm_medium=referral&utm_campaign=fx-api-examples&utm_content=related) · همهٔ مستندات فنی: [netarz.ir/docs](https://netarz.ir/docs?utm_source=github&utm_medium=referral&utm_campaign=fx-api-examples&utm_content=related)
@@ -301,7 +302,8 @@ python3 telegram-bot/bot.py                     # Telegram bot: /usd, /rates, /c
 - Docs: [netarz.ir/docs/fx](https://netarz.ir/docs/fx?utm_source=github&utm_medium=referral&utm_campaign=fx-api-examples&utm_content=english) · Interactive reference: [netarz.ir/docs/fx/reference](https://netarz.ir/docs/fx/reference?utm_source=github&utm_medium=referral&utm_campaign=fx-api-examples&utm_content=english)
 - All NetArz open-source projects: [netarz.ir/open-source](https://netarz.ir/open-source?utm_source=github&utm_medium=referral&utm_campaign=fx-api-examples&utm_content=english)
 - Related repos: [netarz-fx-wordpress](https://github.com/netarz/netarz-fx-wordpress) (WordPress plugin) ·
-  [ai-api-examples](https://github.com/netarz/ai-api-examples) (OpenAI-compatible AI API)
+  [ai-api-examples](https://github.com/netarz/ai-api-examples) (OpenAI-compatible AI API) ·
+  [gisoo](https://github.com/netarz/gisoo) (Gisoo, our Persian AI app and OpenAI/Anthropic-compatible API, [gisoo.pro](https://gisoo.pro/?utm_source=github&utm_medium=referral&utm_campaign=fx-api-examples&utm_content=english))
 
 Contributions are welcome: see [CONTRIBUTING.md](CONTRIBUTING.md). Report security issues privately to `dev@netarz.ir`
 ([SECURITY.md](SECURITY.md)). Rates are informational. Licensed under MIT.
