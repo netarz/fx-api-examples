@@ -5,12 +5,13 @@ JavaScript client for the [NetArz FX API](https://netarz.ir/fx-api): Tehran open
 No dependencies. Works in Node 18+, Deno, Bun and the browser (global `fetch`). TypeScript types included.
 
 ```bash
-npm install netarz-fx
+# npm release coming soon (npm install netarz-fx). Until then, copy index.js and index.d.ts
+# from this folder into your project; they have no dependencies.
 export NETARZ_FX_KEY="fx-ntz-v1-..."   # create a free key at https://netarz.ir/fx
 ```
 
 ```js
-import { createClient, NetArzFxError } from "netarz-fx";
+import { createClient, NetArzFxError } from "./index.js";   // "netarz-fx" once it is on npm
 
 const fx = createClient(); // reads NETARZ_FX_KEY, or createClient({ key })
 const usd = await fx.rate("USD");

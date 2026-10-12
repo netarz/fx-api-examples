@@ -5,7 +5,8 @@ Python client for the [NetArz FX API](https://netarz.ir/fx-api): Tehran open-mar
 Standard library only (no `requests`), Python 3.8+.
 
 ```bash
-pip install netarz-fx
+pip install "git+https://github.com/netarz/fx-api-examples#subdirectory=packages/python"
+# PyPI release coming soon: pip install netarz-fx
 export NETARZ_FX_KEY="fx-ntz-v1-..."   # create a free key at https://netarz.ir/fx
 ```
 
