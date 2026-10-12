@@ -25,6 +25,11 @@ jobs:
           python-version: "3.12"
       - name: py_compile
         run: python -m py_compile python/*.py telegram-bot/*.py
+      - name: netarz-fx package (offline tests and build)
+        run: |
+          python -m unittest discover -s packages/python/tests
+          python -m pip install --quiet build
+          python -m build packages/python
 
   javascript:
     runs-on: ubuntu-latest
@@ -42,6 +47,11 @@ jobs:
           # Apps Script is plain JavaScript with a .gs extension.
           cp google-sheets/Code.gs "$RUNNER_TEMP/Code.js"
           node --check "$RUNNER_TEMP/Code.js"
+      - name: netarz-fx package (offline tests and pack)
+        working-directory: packages/js
+        run: |
+          node --test test.mjs
+          npm pack --dry-run
       - name: JSX parse (esbuild, no bundling of dependencies)
         run: npx --yes esbuild@0.24.0 react/RatesTable.jsx --jsx=automatic --log-level=warning > /dev/null
 

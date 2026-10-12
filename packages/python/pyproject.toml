@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "netarz-fx"
+version = "0.1.0"
+description = "Client for the NetArz FX API: Iranian Toman exchange rates for USD, EUR, AED, TRY and more"
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "MIT" }
+authors = [{ name = "NetArz", email = "dev@netarz.ir" }]
+keywords = ["toman", "iran", "exchange-rate", "currency", "forex", "usd", "irr", "api-client"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Topic :: Office/Business :: Financial",
+  "Natural Language :: Persian",
+]
+dependencies = []
+
+[project.urls]
+Homepage = "https://netarz.ir/fx-api"
+Documentation = "https://netarz.ir/docs/fx"
+Source = "https://github.com/netarz/fx-api-examples/tree/main/packages/python"
+Changelog = "https://github.com/netarz/fx-api-examples/blob/main/CHANGELOG.md"
+
+[tool.setuptools.packages.find]
+where = ["src"]

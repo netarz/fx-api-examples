@@ -1,0 +1,29 @@
+{
+  "name": "netarz-fx",
+  "version": "0.1.0",
+  "description": "Client for the NetArz FX API: Iranian Toman exchange rates for USD, EUR, AED, TRY and more",
+  "type": "module",
+  "main": "./index.js",
+  "types": "./index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "default": "./index.js"
+    }
+  },
+  "files": ["index.js", "index.d.ts", "README.md", "LICENSE"],
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "test": "node --test test.mjs"
+  },
+  "keywords": ["toman", "iran", "exchange-rate", "currency", "forex", "usd", "irr", "api-client"],
+  "homepage": "https://netarz.ir/fx-api",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/netarz/fx-api-examples.git",
+    "directory": "packages/js"
+  },
+  "bugs": "https://github.com/netarz/fx-api-examples/issues",
+  "author": "NetArz <dev@netarz.ir>",
+  "license": "MIT"
+}

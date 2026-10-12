@@ -6,6 +6,12 @@ and the project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Added
+
+- `packages/python/`: `netarz-fx` for PyPI, a standard-library client (IPv4 by default, cache, typed errors) with offline tests.
+- `packages/js/`: `netarz-fx` for npm, a dependency-free ESM client for Node 18+, Deno, Bun and browsers, with TypeScript types and offline tests.
+- CI runs the offline tests of both packages and builds them.
+
 ## [1.1.0] - 2026-09-28
 
 ### Added
